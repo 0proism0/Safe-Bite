@@ -1,0 +1,181 @@
+- generic [ref=f11e2]:
+  - generic [ref=f11e3]:
+    - link "Skip to content" [ref=f11e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=f11e9]:
+      - heading "Navigation Menu" [level=2] [ref=f11e10]
+      - generic [ref=f11e11]:
+        - link "Homepage" [ref=f11e13] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f11e16]:
+          - navigation "Global" [ref=f11e17]:
+            - list [ref=f11e18]:
+              - listitem [ref=f11e19]:
+                - button "Platform" [ref=f11e21] [cursor=pointer]
+              - listitem [ref=f11e24]:
+                - button "Solutions" [ref=f11e26] [cursor=pointer]
+              - listitem [ref=f11e29]:
+                - button "Resources" [ref=f11e31] [cursor=pointer]
+              - listitem [ref=f11e34]:
+                - button "Open Source" [ref=f11e36] [cursor=pointer]
+              - listitem [ref=f11e39]:
+                - button "Enterprise" [ref=f11e41] [cursor=pointer]
+              - listitem [ref=f11e44]:
+                - link "Pricing" [ref=f11e45] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+          - generic [ref=f11e46]:
+            - button "Search or jump to, type / to search" [ref=f11e48] [cursor=pointer]
+            - link "Sign in" [ref=f11e55] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2F0proism0%2FSafe-Bite%2Factions%2Fruns%2F36120556210
+            - link "Sign up" [ref=f11e58] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Factions%2Fworkflow_runs%2Fshow&source=header-repo&source_repo=0proism0%2FSafe-Bite
+            - button "Appearance settings" [ref=f11e61] [cursor=pointer]
+  - main [ref=f11e68]:
+    - generic [ref=f11e69]:
+      - generic [ref=f11e70]:
+        - generic [ref=f11e71]:
+          - generic [ref=f11e73]:
+            - link "0proism0" [ref=f11e77] [cursor=pointer]:
+              - /url: /0proism0
+            - generic [ref=f11e78]: /
+            - strong [ref=f11e79]:
+              - link "Safe-Bite" [ref=f11e80] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite
+            - generic [ref=f11e81]: Public
+          - generic [ref=f11e82]:
+            - list:
+              - listitem [ref=f11e83]:
+                - link "You must be signed in to change notification settings" [ref=f11e84] [cursor=pointer]:
+                  - /url: /login?return_to=%2F0proism0%2FSafe-Bite
+                  - text: Notifications
+              - listitem [ref=f11e87]:
+                - link "Fork 0" [ref=f11e88] [cursor=pointer]:
+                  - /url: /login?return_to=%2F0proism0%2FSafe-Bite
+                  - text: Fork
+                  - generic "0" [ref=f11e91]
+              - listitem [ref=f11e92]:
+                - link "You must be signed in to star a repository" [ref=f11e94] [cursor=pointer]:
+                  - /url: /login?return_to=%2F0proism0%2FSafe-Bite
+                  - text: Star
+                  - generic "0 users starred this repository" [ref=f11e97]: "0"
+        - navigation "Repository" [ref=f11e98]:
+          - list [ref=f11e99]:
+            - listitem [ref=f11e100]:
+              - link "Code" [ref=f11e101] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite
+            - listitem [ref=f11e105]:
+              - link "Issues" [ref=f11e106] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite/issues
+            - listitem [ref=f11e111]:
+              - link "Pull requests" [ref=f11e112] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite/pulls
+            - listitem [ref=f11e116]:
+              - link "Actions" [ref=f11e117] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite/actions
+            - listitem [ref=f11e121]:
+              - link "Projects" [ref=f11e122] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite/projects
+            - listitem [ref=f11e126]:
+              - link "Security and quality" [ref=f11e127] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite/security
+            - listitem [ref=f11e131]:
+              - link "Insights" [ref=f11e132] [cursor=pointer]:
+                - /url: /0proism0/Safe-Bite/pulse
+      - generic [ref=f11e140]:
+        - generic [ref=f11e143]:
+          - link "Deploy Jekyll with GitHub Pages dependencies preinstalled" [ref=f11e146] [cursor=pointer]:
+            - /url: /0proism0/Safe-Bite/actions/workflows/deploy.yml
+          - generic [ref=f11e150]:
+            - generic [ref=f11e151]:
+              - img "failed:" [ref=f11e155]
+              - 'heading "Fix GitHub Actions workflow permissions #10" [level=1] [ref=f11e157]'
+            - link "Sign in to view logs" [ref=f11e161] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2F0proism0%2FSafe-Bite%2Factions%2Fruns%2F36120556210
+        - generic [ref=f11e165]:
+          - region "Workflow run summary" [ref=f11e166]:
+            - generic [ref=f11e167]:
+              - generic [ref=f11e168]:
+                - generic [ref=f11e169]: Triggered via push September 25, 2026 09:49
+                - generic [ref=f11e170]:
+                  - link [ref=f11e171] [cursor=pointer]:
+                    - /url: /0proism0
+                    - img "@0proism0" [ref=f11e172]
+                    - text: 0proism0
+                  - generic [ref=f11e173]:
+                    - generic [ref=f11e174]: pushed
+                    - link "ebb9484" [ref=f11e175] [cursor=pointer]:
+                      - /url: /0proism0/Safe-Bite/commit/ebb9484780796f2ae8534cdaf1a4bcd5777fd1da
+                  - link "main" [ref=f11e178] [cursor=pointer]:
+                    - /url: /0proism0/Safe-Bite/tree/refs/heads/main
+              - generic [ref=f11e179]:
+                - generic [ref=f11e180]: Status
+                - text: Failure
+              - generic [ref=f11e181]:
+                - generic [ref=f11e182]: Total duration
+                - link "7s" [ref=f11e183] [cursor=pointer]:
+                  - /url: /0proism0/Safe-Bite/actions/runs/36120556210/usage
+              - generic [ref=f11e184]:
+                - generic [ref=f11e185]: Artifacts
+                - text: –
+          - region "Workflow run graph" [ref=f11e186]:
+            - generic [ref=f11e188]:
+              - generic [ref=f11e190]:
+                - heading [level=2] [ref=f11e191]:
+                  - link "deploy.yml" [ref=f11e192] [cursor=pointer]:
+                    - /url: /0proism0/Safe-Bite/actions/runs/36120556210/workflow
+                - generic [ref=f11e193]: "on: push"
+              - generic [ref=f11e195]:
+                - generic [ref=f11e196]:
+                  - 'link "failed: build 3s" [ref=f11e200] [cursor=pointer]':
+                    - /url: /0proism0/Safe-Bite/actions/runs/36120556210/job/108024782748
+                    - generic [ref=f11e202]:
+                      - img "failed:" [ref=f11e204]
+                      - generic [ref=f11e206]: build
+                      - generic [ref=f11e208]: 3s
+                  - 'link "skipped: deploy 0s" [ref=f11e213] [cursor=pointer]':
+                    - /url: /0proism0/Safe-Bite/actions/runs/36120556210/job/108024810669
+                    - generic [ref=f11e215]:
+                      - img "skipped:" [ref=f11e217]
+                      - generic [ref=f11e219]: deploy
+                      - generic [ref=f11e221]: 0s
+                - generic [aria-hidden] [ref=f11e223]:
+                  - paragraph [ref=f11e224]: Oh hello! Nice to see you.
+                  - paragraph [ref=f11e225]:
+                    - text: Made with ❤️ by
+                    - link [ref=f11e226] [cursor=pointer]:
+                      - /url: https://actions.github.io/humans.txt
+                      - text: humans.txt
+              - generic [ref=f11e227]:
+                - button "Fit to window" [disabled] [ref=f11e228]
+                - generic [ref=f11e229]:
+                  - button "Zoom out" [disabled] [ref=f11e231]
+                  - button "Zoom in" [disabled] [ref=f11e233]
+          - region "Annotations" [ref=f11e234]:
+            - generic [ref=f11e235]:
+              - generic [ref=f11e237]:
+                - heading "Annotations" [level=2] [ref=f11e238]
+                - generic [ref=f11e239]: 1 error and 1 notice
+              - table [ref=f11e240]:
+                - rowgroup [ref=f11e241]:
+                  - row [ref=f11e242]:
+                    - 'cell "build Unable to resolve action `ruby/setup-ruby@8575951200e472d5f2d95c62e4879ae914d65ce9`, unable to find version `8575951200e472d5f2d95c62e4879ae914d65ce9` Show more" [ref=f11e243]':
+                      - generic [ref=f11e248]:
+                        - link [ref=f11e249] [cursor=pointer]:
+                          - /url: /0proism0/Safe-Bite/actions/runs/36120556210/job/108024782748#step:1:31
+                          - strong [ref=f11e250]: build
+                        - generic [ref=f11e251]:
+                          - generic [ref=f11e252]: "Unable to resolve action `ruby/setup-ruby@8575951200e472d5f2d95c62e4879ae914d65ce9`, unable to find version `8575951200e472d5f2d95c62e4879ae914d65ce9`"
+                          - button "Show more" [ref=f11e254] [cursor=pointer]
+                  - row [ref=f11e255]:
+                    - cell [ref=f11e256]:
+                      - generic [ref=f11e261]:
+                        - link [ref=f11e262] [cursor=pointer]:
+                          - /url: /0proism0/Safe-Bite/actions/runs/36120556210/job/108024782748
+                          - strong [ref=f11e263]: build
+                        - generic [ref=f11e264]:
+                          - generic [ref=f11e266]:
+                            - text: "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see"
+                            - link "https://github.com/actions/runner-images/issues/14748" [ref=f11e267] [cursor=pointer]:
+                              - /url: https://github.com/actions/runner-images/issues/14748
+                            - text: "\""
+                          - button "Show more" [ref=f11e268] [cursor=pointer]
