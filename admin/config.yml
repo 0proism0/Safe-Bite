@@ -5,99 +5,117 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
+locale: zh_Hans
+
 collections:
   # ===== 主页 =====
   - name: "home"
-    label: "主页"
+    label: "🏠 主页"
     files:
       - name: "home-page"
         label: "主页内容"
         file: "index.html"
         fields:
-          - {label: "网站标题", name: "title", widget: "string"}
-          - {label: "Logo 文字", name: "logo", widget: "string"}
-          - {label: "标语", name: "tagline", widget: "string"}
+          - {label: "网站标题（浏览器标签上显示的）", name: "title", widget: "string"}
+          - {label: "网站名称（大标题）", name: "logo", widget: "string"}
+          - {label: "标语（副标题）", name: "tagline", widget: "string"}
           - {label: "按钮文字", name: "button_text", widget: "string"}
 
   # ===== All About Us 页面 =====
   - name: "about"
-    label: "About Us 页面"
+    label: "ℹ️ 关于我们页面"
     files:
       - name: "about-page"
-        label: "About Us 内容"
+        label: "关于我们 - 内容编辑"
         file: "official/index.html"
         fields:
-          - {label: "页面标题", name: "page_title", widget: "string"}
-          - {label: "Hero 标题", name: "hero_title", widget: "string"}
-          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
-          - label: "简介部分"
+          - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
+          - {label: "大标题", name: "hero_title", widget: "string"}
+          - {label: "副标题", name: "hero_desc", widget: "text"}
+          
+          - label: "📋 简介段落（可以添加多个）"
             name: "about_sections"
             widget: "list"
+            label_singular: "段落"
             fields:
               - {label: "小标题", name: "heading", widget: "string"}
-              - {label: "内容", name: "content", widget: "markdown"}
-          - label: "团队照片"
+              - {label: "正文内容", name: "content", widget: "markdown"}
+          
+          - label: "📷 团队照片（点击添加照片）"
             name: "team_photos"
             widget: "list"
+            label_singular: "照片"
             fields:
-              - {label: "照片", name: "photo", widget: "image"}
-              - {label: "说明", name: "caption", widget: "string", required: false}
-          - label: "成果展示"
+              - {label: "上传照片", name: "photo", widget: "image"}
+              - {label: "照片说明（可选）", name: "caption", widget: "string", required: false}
+          
+          - label: "🏆 成果展示（可以添加多个）"
             name: "achievements"
             widget: "list"
+            label_singular: "成果"
             fields:
-              - {label: "图标 (emoji)", name: "icon", widget: "string"}
-              - {label: "标题", name: "title", widget: "string"}
-              - {label: "描述", name: "description", widget: "text"}
+              - {label: "图标（输入 emoji，如 🏆 📊 🤝）", name: "icon", widget: "string"}
+              - {label: "成果标题", name: "title", widget: "string"}
+              - {label: "成果描述", name: "description", widget: "text"}
 
   # ===== Join Us 页面 =====
   - name: "join"
-    label: "Join Us 页面"
+    label: "🙋 加入我们页面"
     files:
       - name: "join-page"
-        label: "Join Us 内容"
+        label: "加入我们 - 内容编辑"
         file: "official/join-us.html"
         fields:
-          - {label: "页面标题", name: "page_title", widget: "string"}
-          - {label: "Hero 标题", name: "hero_title", widget: "string"}
-          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
-          - label: "内容段落"
+          - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
+          - {label: "大标题", name: "hero_title", widget: "string"}
+          - {label: "副标题", name: "hero_desc", widget: "text"}
+          
+          - label: "📝 内容段落（可以添加多个）"
             name: "content_sections"
             widget: "list"
+            label_singular: "段落"
             fields:
               - {label: "小标题", name: "heading", widget: "string"}
-              - {label: "内容", name: "content", widget: "markdown"}
+              - {label: "正文内容", name: "content", widget: "markdown"}
 
   # ===== Our Work 页面 =====
   - name: "work"
-    label: "Our Work 页面"
+    label: "💼 我们的成果页面"
     files:
       - name: "work-page"
-        label: "Our Work 内容"
+        label: "我们的成果 - 内容编辑"
         file: "official/our-work.html"
         fields:
-          - {label: "页面标题", name: "page_title", widget: "string"}
-          - {label: "Hero 标题", name: "hero_title", widget: "string"}
-          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
-          - label: "文章/视频/项目"
+          - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
+          - {label: "大标题", name: "hero_title", widget: "string"}
+          - {label: "副标题", name: "hero_desc", widget: "text"}
+          
+          - label: "📄 文章 / 🎬 视频 / 📁 项目（点击添加）"
             name: "work_items"
             widget: "list"
+            label_singular: "条目"
             fields:
-              - {label: "类型", name: "category", widget: "select", options: ["articles", "videos", "projects"]}
-              - {label: "封面图", name: "image", widget: "image"}
+              - label: "类型"
+                name: "category"
+                widget: "select"
+                options:
+                  - {label: "📄 文章", value: "articles"}
+                  - {label: "🎬 视频", value: "videos"}
+                  - {label: "📁 项目", value: "projects"}
+              - {label: "封面图片", name: "image", widget: "image"}
               - {label: "标题", name: "title", widget: "string"}
-              - {label: "描述", name: "description", widget: "text"}
-              - {label: "日期", name: "date", widget: "datetime"}
+              - {label: "简短描述", name: "description", widget: "text"}
+              - {label: "发布日期", name: "date", widget: "datetime"}
 
   # ===== Donations 页面 =====
   - name: "donations"
-    label: "Donations 页面"
+    label: "💰 捐赠页面"
     files:
       - name: "donations-page"
-        label: "Donations 内容"
+        label: "捐赠 - 内容编辑"
         file: "official/donations.html"
         fields:
-          - {label: "页面标题", name: "page_title", widget: "string"}
-          - {label: "Hero 标题", name: "hero_title", widget: "string"}
-          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
-          - {label: "提示内容", name: "message", widget: "markdown"}
+          - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
+          - {label: "大标题", name: "hero_title", widget: "string"}
+          - {label: "副标题", name: "hero_desc", widget: "text"}
+          - {label: "提示信息", name: "message", widget: "markdown"}
