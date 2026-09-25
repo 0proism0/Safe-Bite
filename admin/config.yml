@@ -2,6 +2,9 @@ backend:
   name: github
   repo: 0proism0/Safe-Bite
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  app_id: Ov23li20lqmp2QBGhzCB
 
 media_folder: "images/uploads"
 public_folder: "/Safe-Bite/images/uploads"
