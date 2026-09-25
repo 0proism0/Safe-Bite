@@ -11,14 +11,14 @@ button_text: 进入官网
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
 </head>
 <body class="home-page">
     <div class="home-container">
         <div class="home-content">
             <h1 class="logo">{{ logo }}</h1>
             <p class="tagline">{{ tagline }}</p>
-            <a href="official/index.html" class="btn-enter">
+            <a href="{{ site.baseurl }}/official/index.html" class="btn-enter">
                 {{ button_text }}
                 <span class="arrow">→</span>
             </a>
