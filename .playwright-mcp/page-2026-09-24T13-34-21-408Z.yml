@@ -1,7 +1,0 @@
-- generic [ref=f2e3]:
-  - heading "SafeBite" [level=1] [ref=f2e4]
-  - paragraph [ref=f2e5]: 让每一口都安心
-  - link "进入官网 →" [ref=f2e6] [cursor=pointer]:
-    - /url: official/index.html
-    - text: 进入官网
-    - generic [ref=f2e7]: →
