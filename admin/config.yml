@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/safebite  # 替换为你的 GitHub 用户名和仓库名
+  repo: 0proism0/Safe-Bite
   branch: main
 
 media_folder: "images/uploads"  # 图片上传存放的目录
