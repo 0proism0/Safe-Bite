@@ -1,9 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: 0proism0/Safe-Bite
   branch: main
 
 media_folder: "images/uploads"
-public_folder: "/images/uploads"
+public_folder: "/Safe-Bite/images/uploads"
 
 locale: zh_Hans
 

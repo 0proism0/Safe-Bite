@@ -1,8 +1,8 @@
 # Jekyll 配置
 title: SafeBite
 description: 让每一口都安心
-baseurl: ""
-url: ""
+baseurl: "/Safe-Bite"
+url: "https://0proism0.github.io"
 
 # 构建配置
 markdown: kramdown
@@ -18,3 +18,4 @@ exclude:
   - .git
   - .gitignore
   - admin/config.yml
+  - netlify.toml
