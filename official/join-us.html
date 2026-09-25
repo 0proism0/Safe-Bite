@@ -1,0 +1,98 @@
+---
+page_title: Join Us - SafeBite
+hero_title: Join Us
+hero_desc: 加入我们的行列，一起为食品安全和健康贡献力量
+content_sections:
+  - heading: 为什么加入我们？
+    content: |
+      在 SafeBite，每一位志愿者和成员都是我们推动变革的重要力量。
+      无论你拥有什么技能、背景或经验，只要你有热情和意愿，
+      就能在这里找到属于你的位置，为社区带来积极的影响。
+
+      我们提供多种参与方式，包括：
+
+      • **志愿者服务** - 参与社区活动、食品安全检查、教育宣传等
+      • **专业支持** - 如果你有食品科学、营养、法律等专业背景，欢迎提供专业指导
+      • **内容创作** - 帮助撰写文章、制作视频，传播食品安全知识
+      • **活动组织** - 协助策划和执行各类线上线下活动
+  - heading: 联系我们
+    content: |
+      填写以下表单，我们会尽快与你联系：
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">SafeBite</a>
+            <ul class="navbar-nav">
+                <li><a href="index.html">All About Us</a></li>
+                <li><a href="join-us.html" class="active">Join Us</a></li>
+                <li><a href="our-work.html">Our Work</a></li>
+                <li><a href="donations.html">Donations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <!-- Hero 区域 -->
+        <section class="join-hero">
+            <h1>{{ hero_title }}</h1>
+            <p>{{ hero_desc }}</p>
+        </section>
+
+        <!-- 内容区 -->
+        <section class="join-content">
+            {% for section in content_sections %}
+            <h2{% if forloop.first %} style="margin-top: 0;"{% endif %}>{{ section.heading }}</h2>
+            <p>{{ section.content | newline_to_br | markdownify }}</p>
+            {% endfor %}
+
+            <!-- 报名表单 -->
+            <form class="join-form" onsubmit="event.preventDefault(); alert('感谢您的关注！我们会尽快与您联系。');">
+                <div class="form-group">
+                    <label for="name">姓名 *</label>
+                    <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                </div>
+                <div class="form-group">
+                    <label for="email">电子邮箱 *</label>
+                    <input type="email" id="email" name="email" required placeholder="请输入您的邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="phone">联系电话</label>
+                    <input type="tel" id="phone" name="phone" placeholder="请输入您的电话（选填）">
+                </div>
+                <div class="form-group">
+                    <label for="interest">您感兴趣的领域 *</label>
+                    <select id="interest" name="interest" required>
+                        <option value="">请选择...</option>
+                        <option value="volunteer">志愿者服务</option>
+                        <option value="professional">专业支持</option>
+                        <option value="content">内容创作</option>
+                        <option value="events">活动组织</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">留言</label>
+                    <textarea id="message" name="message" placeholder="请简单介绍一下您自己，或者您想如何参与..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">提交申请</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SafeBite. All rights reserved.</p>
+    </footer>
+</body>
+</html>

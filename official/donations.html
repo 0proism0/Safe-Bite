@@ -1,0 +1,53 @@
+---
+page_title: Donations - SafeBite
+hero_title: Donations
+hero_desc: 您的支持是我们前进的动力
+message: |
+  感谢您的关注！我们正在筹备捐赠相关事宜，
+  敬请期待。如果您希望提前了解或支持我们，
+  请通过 Join Us 页面联系我们。
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">SafeBite</a>
+            <ul class="navbar-nav">
+                <li><a href="index.html">All About Us</a></li>
+                <li><a href="join-us.html">Join Us</a></li>
+                <li><a href="our-work.html">Our Work</a></li>
+                <li><a href="donations.html" class="active">Donations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <!-- Hero 区域 -->
+        <section class="donations-hero">
+            <h1>{{ hero_title }}</h1>
+            <p>{{ hero_desc }}</p>
+        </section>
+
+        <!-- 内容区 -->
+        <section class="donations-content">
+            <div class="coming-soon">🚧</div>
+            <h2>页面建设中</h2>
+            <p>{{ message | newline_to_br }}</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SafeBite. All rights reserved.</p>
+    </footer>
+</body>
+</html>

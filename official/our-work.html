@@ -1,0 +1,125 @@
+---
+page_title: Our Work - SafeBite
+hero_title: Our Work
+hero_desc: 探索我们的文章、视频和项目成果
+work_items:
+  - category: articles
+    image: ""
+    title: 文章标题 1
+    description: 这里是文章的简要介绍，可以描述文章的主要内容和亮点。
+    date: 2025-01-15T00:00:00.000Z
+  - category: articles
+    image: ""
+    title: 文章标题 2
+    description: 这里是文章的简要介绍，可以描述文章的主要内容和亮点。
+    date: 2025-01-10T00:00:00.000Z
+  - category: videos
+    image: ""
+    title: 视频标题 1
+    description: 这里是视频的简要介绍，可以描述视频的主要内容和亮点。
+    date: 2025-01-12T00:00:00.000Z
+  - category: videos
+    image: ""
+    title: 视频标题 2
+    description: 这里是视频的简要介绍，可以描述视频的主要内容和亮点。
+    date: 2025-01-08T00:00:00.000Z
+  - category: projects
+    image: ""
+    title: 项目名称 1
+    description: 这里是项目的简要介绍，可以描述项目的目标和成果。
+    date: 2025-01-05T00:00:00.000Z
+  - category: projects
+    image: ""
+    title: 项目名称 2
+    description: 这里是项目的简要介绍，可以描述项目的目标和成果。
+    date: 2024-12-28T00:00:00.000Z
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">SafeBite</a>
+            <ul class="navbar-nav">
+                <li><a href="index.html">All About Us</a></li>
+                <li><a href="join-us.html">Join Us</a></li>
+                <li><a href="our-work.html" class="active">Our Work</a></li>
+                <li><a href="donations.html">Donations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <!-- Hero 区域 -->
+        <section class="work-hero">
+            <h1>{{ hero_title }}</h1>
+            <p>{{ hero_desc }}</p>
+        </section>
+
+        <!-- 分类标签 -->
+        <div class="work-tabs">
+            <button class="work-tab active" onclick="filterWork('all')">全部</button>
+            <button class="work-tab" onclick="filterWork('articles')">文章</button>
+            <button class="work-tab" onclick="filterWork('videos')">视频</button>
+            <button class="work-tab" onclick="filterWork('projects')">项目</button>
+        </div>
+
+        <!-- 内容卡片 -->
+        <div class="work-grid" id="workGrid">
+            {% for item in work_items %}
+            <div class="work-card" data-category="{{ item.category }}">
+                <div class="card-image">
+                    {% if item.image %}
+                    <img src="{{ item.image }}" alt="{{ item.title }}">
+                    {% else %}
+                    {% if item.category == 'articles' %}文章封面图{% elsif item.category == 'videos' %}视频封面图{% else %}项目封面图{% endif %}
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">
+                        {% if item.category == 'articles' %}文章{% elsif item.category == 'videos' %}视频{% else %}项目{% endif %}
+                    </span>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                    <div class="card-date">{{ item.date | date: "%Y年%m月%d日" }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SafeBite. All rights reserved.</p>
+    </footer>
+
+    <!-- 简单的筛选脚本 -->
+    <script>
+        function filterWork(category) {
+            const tabs = document.querySelectorAll('.work-tab');
+            const cards = document.querySelectorAll('.work-card');
+
+            // 更新标签状态
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // 筛选卡片
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

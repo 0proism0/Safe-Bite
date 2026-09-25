@@ -1,0 +1,104 @@
+backend:
+  name: github
+  repo: your-username/safebite  # 替换为你的 GitHub 用户名和仓库名
+  branch: main
+
+media_folder: "images/uploads"  # 图片上传存放的目录
+public_folder: "/images/uploads"  # 图片在网页中的公开路径
+
+collections:
+  # ===== 主页 =====
+  - name: "home"
+    label: "主页"
+    files:
+      - name: "home-page"
+        label: "主页内容"
+        file: "index.html"
+        fields:
+          - {label: "网站标题", name: "title", widget: "string"}
+          - {label: "Logo 文字", name: "logo", widget: "string"}
+          - {label: "标语", name: "tagline", widget: "string"}
+          - {label: "按钮文字", name: "button_text", widget: "string"}
+
+  # ===== All About Us 页面 =====
+  - name: "about"
+    label: "About Us 页面"
+    files:
+      - name: "about-page"
+        label: "About Us 内容"
+        file: "official/index.html"
+        fields:
+          - {label: "页面标题", name: "page_title", widget: "string"}
+          - {label: "Hero 标题", name: "hero_title", widget: "string"}
+          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
+          - label: "简介部分"
+            name: "about_sections"
+            widget: "list"
+            fields:
+              - {label: "小标题", name: "heading", widget: "string"}
+              - {label: "内容", name: "content", widget: "markdown"}
+          - label: "团队照片"
+            name: "team_photos"
+            widget: "list"
+            fields:
+              - {label: "照片", name: "photo", widget: "image"}
+              - {label: "说明", name: "caption", widget: "string", required: false}
+          - label: "成果展示"
+            name: "achievements"
+            widget: "list"
+            fields:
+              - {label: "图标 (emoji)", name: "icon", widget: "string"}
+              - {label: "标题", name: "title", widget: "string"}
+              - {label: "描述", name: "description", widget: "text"}
+
+  # ===== Join Us 页面 =====
+  - name: "join"
+    label: "Join Us 页面"
+    files:
+      - name: "join-page"
+        label: "Join Us 内容"
+        file: "official/join-us.html"
+        fields:
+          - {label: "页面标题", name: "page_title", widget: "string"}
+          - {label: "Hero 标题", name: "hero_title", widget: "string"}
+          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
+          - label: "内容段落"
+            name: "content_sections"
+            widget: "list"
+            fields:
+              - {label: "小标题", name: "heading", widget: "string"}
+              - {label: "内容", name: "content", widget: "markdown"}
+
+  # ===== Our Work 页面 =====
+  - name: "work"
+    label: "Our Work 页面"
+    files:
+      - name: "work-page"
+        label: "Our Work 内容"
+        file: "official/our-work.html"
+        fields:
+          - {label: "页面标题", name: "page_title", widget: "string"}
+          - {label: "Hero 标题", name: "hero_title", widget: "string"}
+          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
+          - label: "文章/视频/项目"
+            name: "work_items"
+            widget: "list"
+            fields:
+              - {label: "类型", name: "category", widget: "select", options: ["articles", "videos", "projects"]}
+              - {label: "封面图", name: "image", widget: "image"}
+              - {label: "标题", name: "title", widget: "string"}
+              - {label: "描述", name: "description", widget: "text"}
+              - {label: "日期", name: "date", widget: "datetime"}
+
+  # ===== Donations 页面 =====
+  - name: "donations"
+    label: "Donations 页面"
+    files:
+      - name: "donations-page"
+        label: "Donations 内容"
+        file: "official/donations.html"
+        fields:
+          - {label: "页面标题", name: "page_title", widget: "string"}
+          - {label: "Hero 标题", name: "hero_title", widget: "string"}
+          - {label: "Hero 描述", name: "hero_desc", widget: "text"}
+          - {label: "提示内容", name: "message", widget: "markdown"}

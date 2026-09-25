@@ -1,0 +1,562 @@
+/* ===== 全局样式 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2d6a4f;
+    --primary-light: #40916c;
+    --primary-dark: #1b4332;
+    --accent-color: #d8f3dc;
+    --text-dark: #212529;
+    --text-light: #6c757d;
+    --white: #ffffff;
+    --bg-light: #f8f9fa;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== 主页样式 ===== */
+.home-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 50%, var(--primary-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.home-content .logo {
+    font-size: 4rem;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.home-content .tagline {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.btn-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: var(--white);
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-enter:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-enter .arrow {
+    transition: transform 0.3s ease;
+}
+
+.btn-enter:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* ===== 官网导航栏 ===== */
+.navbar {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.navbar-nav a {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav a:hover,
+.navbar-nav a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* ===== 页面通用 ===== */
+.page-wrapper {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper .section,
+.page-wrapper .about-content,
+.page-wrapper .join-content,
+.page-wrapper .donations-content,
+.page-wrapper .work-grid {
+    flex: 1;
+}
+
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* ===== About Us 页面 ===== */
+.about-hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.about-hero p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+/* 照片展示区 */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.photo-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 4/3;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* 成果卡片 */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.achievement-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+}
+
+.achievement-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.achievement-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.achievement-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* ===== Join Us 页面 ===== */
+.join-hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.join-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.join-hero p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.join-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.join-content h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+}
+
+.join-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.join-form {
+    margin-top: 3rem;
+}
+
+.join-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.join-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.join-form input,
+.join-form textarea,
+.join-form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.join-form input:focus,
+.join-form textarea:focus,
+.join-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.join-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    display: inline-block;
+    padding: 0.875rem 2.5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Our Work 页面 ===== */
+.work-hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.work-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.work-hero p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.work-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem 0;
+}
+
+.work-tab {
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.work-tab:hover,
+.work-tab.active {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.work-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.work-card:hover {
+    transform: translateY(-5px);
+}
+
+.work-card .card-image {
+    aspect-ratio: 16/9;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+}
+
+.work-card .card-body {
+    padding: 1.5rem;
+}
+
+.work-card .card-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-color);
+    color: var(--primary-dark);
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+}
+
+.work-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.work-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.work-card .card-date {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #adb5bd;
+}
+
+/* ===== Donations 页面 ===== */
+.donations-hero {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.donations-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.donations-hero p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.donations-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.donations-content .coming-soon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+}
+
+.donations-content h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.donations-content p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* ===== Footer ===== */
+.footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+}
+
+.footer p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .navbar-inner {
+        padding: 0 1rem;
+    }
+
+    .navbar-nav {
+        gap: 1rem;
+    }
+
+    .navbar-nav a {
+        font-size: 0.9rem;
+    }
+
+    .home-content .logo {
+        font-size: 2.5rem;
+    }
+
+    .home-content .tagline {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-hero h1,
+    .join-hero h1,
+    .work-hero h1,
+    .donations-hero h1 {
+        font-size: 2rem;
+    }
+
+    .work-tabs {
+        flex-wrap: wrap;
+        padding: 0 1rem;
+    }
+}
