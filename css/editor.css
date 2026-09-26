@@ -1,0 +1,173 @@
+/* ===== 编辑器样式 ===== */
+
+/* 编辑工具栏 */
+#editor-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #1b4332;
+    color: white;
+    padding: 10px 20px;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.toolbar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toolbar-title {
+    font-weight: bold;
+    margin-right: auto;
+}
+
+.toolbar-btn {
+    padding: 8px 16px;
+    background: #40916c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.toolbar-btn:hover {
+    background: #2d6a4f;
+}
+
+.save-btn {
+    background: #e63946;
+}
+
+.save-btn:hover {
+    background: #c1121f;
+}
+
+.cancel-btn {
+    background: #6c757d;
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
+}
+
+/* 登录按钮 */
+#editor-login-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: #1b4332;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: all 0.3s;
+}
+
+#editor-login-btn:hover {
+    background: #2d6a4f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* 编辑模式样式 */
+.edit-mode .editable {
+    outline: 2px dashed #40916c;
+    outline-offset: 2px;
+    cursor: text;
+    min-height: 1em;
+}
+
+.edit-mode .editable:hover {
+    outline-color: #e63946;
+    background: rgba(64, 145, 108, 0.1);
+}
+
+.edit-mode .editable:focus {
+    outline: 2px solid #e63946;
+    background: rgba(64, 145, 108, 0.15);
+}
+
+/* 图片编辑 */
+.editable-image {
+    position: relative;
+    cursor: pointer;
+}
+
+.img-upload-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    background: rgba(27, 67, 50, 0.9);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.editable-image:hover .img-upload-btn {
+    opacity: 1;
+}
+
+.img-upload-btn:hover {
+    background: rgba(45, 106, 79, 0.95);
+}
+
+/* 编辑模式下的提示 */
+.edit-mode::before {
+    content: '✏️ 点击任意文字进行编辑';
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e63946;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 9998;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .toolbar-content {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .toolbar-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    #editor-login-btn {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}

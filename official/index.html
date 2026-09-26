@@ -33,19 +33,19 @@ achievements:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+    <title>All About Us - SafeBite</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
-            <a href="{{ site.baseurl }}/official/index.html" class="navbar-brand">SafeBite</a>
+            <a href="/official/index.html" class="navbar-brand">SafeBite</a>
             <ul class="navbar-nav">
-                <li><a href="{{ site.baseurl }}/official/index.html" class="active">All About Us</a></li>
-                <li><a href="{{ site.baseurl }}/official/join-us.html">Join Us</a></li>
-                <li><a href="{{ site.baseurl }}/official/our-work.html">Our Work</a></li>
-                <li><a href="{{ site.baseurl }}/official/donations.html">Donations</a></li>
+                <li><a href="/official/index.html" class="active">All About Us</a></li>
+                <li><a href="/official/join-us.html">Join Us</a></li>
+                <li><a href="/official/our-work.html">Our Work</a></li>
+                <li><a href="/official/donations.html">Donations</a></li>
             </ul>
         </div>
     </nav>
@@ -53,28 +53,30 @@ achievements:
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="about-hero">
-            <h1>{{ hero_title }}</h1>
-            <p>{{ hero_desc }}</p>
+            <h1>All About Us</h1>
+            <p>了解 SafeBite 的故事、我们的使命，以及我们为之努力的目标</p>
         </section>
 
         <!-- 简介内容 -->
         <section class="about-content">
-            {% for section in about_sections %}
-            <h2{% if forloop.first %} style="margin-top: 0;"{% endif %}>{{ section.heading }}</h2>
-            <p>{{ section.content | newline_to_br }}</p>
-            {% endfor %}
+            <h2>我们是谁</h2>
+            <p>
+                SafeBite 是一个致力于食品安全与健康的组织。我们相信，每个人都应该获得安全、健康、有保障的食品。
+                通过教育、倡导和社区行动，我们努力提升公众对食品安全问题的认识，推动行业的积极变革。
+            </p>
+            <p>
+                我们的团队由来自不同背景的热心人士组成，包括食品科学专家、营养师、志愿者和社区领袖。
+                大家怀着共同的信念聚集在一起：让每一口食物都值得信赖。
+            </p>
+
+            <h2 style="margin-top: 3rem;">我们的使命</h2>
+            <p>
+                通过普及食品安全知识、推动政策改进、支持本地食品生产者，
+                我们致力于构建一个更加透明、健康和可持续的食品体系。
+                我们相信，改变始于教育，成于行动。
+            </p>
 
             <!-- 照片展示区 -->
-            {% if team_photos.size > 0 %}
-            <h2 style="margin-top: 3rem;">我们的团队</h2>
-            <div class="photo-grid">
-                {% for photo in team_photos %}
-                <div class="photo-item">
-                    <img src="{{ photo.photo }}" alt="{{ photo.caption | default: '团队照片' }}">
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
             <h2 style="margin-top: 3rem;">我们的团队</h2>
             <p>以下是我们团队的一些照片（您可以后续替换为真实照片）：</p>
             <div class="photo-grid">
@@ -85,7 +87,6 @@ achievements:
                 <div class="photo-item">团队合影 5</div>
                 <div class="photo-item">团队合影 6</div>
             </div>
-            {% endif %}
         </section>
 
         <!-- 优秀成果展示 -->
@@ -93,13 +94,21 @@ achievements:
             <h2 class="section-title">我们的成果</h2>
             <p class="section-subtitle">以下是我们取得的一些重要成就（将持续更新）</p>
             <div class="achievements-grid">
-                {% for item in achievements %}
                 <div class="achievement-card">
-                    <div class="icon">{{ item.icon }}</div>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
+                    <div class="icon">🏆</div>
+                    <h3>成果标题 1</h3>
+                    <p>这里可以填写具体的成果描述，比如举办了多少场食品安全讲座、影响了多少社区居民等。</p>
                 </div>
-                {% endfor %}
+                <div class="achievement-card">
+                    <div class="icon">📊</div>
+                    <h3>成果标题 2</h3>
+                    <p>这里可以填写另一个成果的描述，比如发布的研究报告、获得的奖项或认可等。</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">🤝</div>
+                    <h3>成果标题 3</h3>
+                    <p>这里可以填写合作伙伴关系、社区项目成果等更多内容。</p>
+                </div>
             </div>
         </section>
     </div>
@@ -108,5 +117,7 @@ achievements:
     <footer class="footer">
         <p>&copy; 2025 SafeBite. All rights reserved.</p>
     </footer>
+    <link rel="stylesheet" href="/css/editor.css">
+    <script src="/js/editor.js"></script>
 </body>
 </html>

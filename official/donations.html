@@ -13,19 +13,19 @@ message: |
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+    <title>Donations - SafeBite</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
-            <a href="{{ site.baseurl }}/official/index.html" class="navbar-brand">SafeBite</a>
+            <a href="/official/index.html" class="navbar-brand">SafeBite</a>
             <ul class="navbar-nav">
-                <li><a href="{{ site.baseurl }}/official/index.html">All About Us</a></li>
-                <li><a href="{{ site.baseurl }}/official/join-us.html">Join Us</a></li>
-                <li><a href="{{ site.baseurl }}/official/our-work.html">Our Work</a></li>
-                <li><a href="{{ site.baseurl }}/official/donations.html" class="active">Donations</a></li>
+                <li><a href="/official/index.html">All About Us</a></li>
+                <li><a href="/official/join-us.html">Join Us</a></li>
+                <li><a href="/official/our-work.html">Our Work</a></li>
+                <li><a href="/official/donations.html" class="active">Donations</a></li>
             </ul>
         </div>
     </nav>
@@ -33,15 +33,19 @@ message: |
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="donations-hero">
-            <h1>{{ hero_title }}</h1>
-            <p>{{ hero_desc }}</p>
+            <h1>Donations</h1>
+            <p>您的支持是我们前进的动力</p>
         </section>
 
         <!-- 内容区 -->
         <section class="donations-content">
             <div class="coming-soon">🚧</div>
             <h2>页面建设中</h2>
-            <p>{{ message | newline_to_br }}</p>
+            <p>
+                感谢您的关注！我们正在筹备捐赠相关事宜，<br>
+                敬请期待。如果您希望提前了解或支持我们，<br>
+                请通过 <a href="/official/join-us.html" style="color: var(--primary-color); text-decoration: underline;">Join Us</a> 页面联系我们。
+            </p>
         </section>
     </div>
 
@@ -49,5 +53,7 @@ message: |
     <footer class="footer">
         <p>&copy; 2025 SafeBite. All rights reserved.</p>
     </footer>
+    <link rel="stylesheet" href="/css/editor.css">
+    <script src="/js/editor.js"></script>
 </body>
 </html>

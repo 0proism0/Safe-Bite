@@ -40,19 +40,19 @@ work_items:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+    <title>Our Work - SafeBite</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
-            <a href="{{ site.baseurl }}/official/index.html" class="navbar-brand">SafeBite</a>
+            <a href="/official/index.html" class="navbar-brand">SafeBite</a>
             <ul class="navbar-nav">
-                <li><a href="{{ site.baseurl }}/official/index.html">All About Us</a></li>
-                <li><a href="{{ site.baseurl }}/official/join-us.html">Join Us</a></li>
-                <li><a href="{{ site.baseurl }}/official/our-work.html" class="active">Our Work</a></li>
-                <li><a href="{{ site.baseurl }}/official/donations.html">Donations</a></li>
+                <li><a href="/official/index.html">All About Us</a></li>
+                <li><a href="/official/join-us.html">Join Us</a></li>
+                <li><a href="/official/our-work.html" class="active">Our Work</a></li>
+                <li><a href="/official/donations.html">Donations</a></li>
             </ul>
         </div>
     </nav>
@@ -60,8 +60,8 @@ work_items:
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="work-hero">
-            <h1>{{ hero_title }}</h1>
-            <p>{{ hero_desc }}</p>
+            <h1>Our Work</h1>
+            <p>探索我们的文章、视频和项目成果</p>
         </section>
 
         <!-- 分类标签 -->
@@ -74,25 +74,68 @@ work_items:
 
         <!-- 内容卡片 -->
         <div class="work-grid" id="workGrid">
-            {% for item in work_items %}
-            <div class="work-card" data-category="{{ item.category }}">
-                <div class="card-image">
-                    {% if item.image %}
-                    <img src="{{ item.image }}" alt="{{ item.title }}">
-                    {% else %}
-                    {% if item.category == 'articles' %}文章封面图{% elsif item.category == 'videos' %}视频封面图{% else %}项目封面图{% endif %}
-                    {% endif %}
-                </div>
+            <!-- 文章卡片 -->
+            <div class="work-card" data-category="articles">
+                <div class="card-image">文章封面图</div>
                 <div class="card-body">
-                    <span class="card-tag">
-                        {% if item.category == 'articles' %}文章{% elsif item.category == 'videos' %}视频{% else %}项目{% endif %}
-                    </span>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
-                    <div class="card-date">{{ item.date | date: "%Y年%m月%d日" }}</div>
+                    <span class="card-tag">文章</span>
+                    <h3>文章标题 1</h3>
+                    <p>这里是文章的简要介绍，可以描述文章的主要内容和亮点。</p>
+                    <div class="card-date">2025年1月15日</div>
                 </div>
             </div>
-            {% endfor %}
+
+            <div class="work-card" data-category="articles">
+                <div class="card-image">文章封面图</div>
+                <div class="card-body">
+                    <span class="card-tag">文章</span>
+                    <h3>文章标题 2</h3>
+                    <p>这里是文章的简要介绍，可以描述文章的主要内容和亮点。</p>
+                    <div class="card-date">2025年1月10日</div>
+                </div>
+            </div>
+
+            <!-- 视频卡片 -->
+            <div class="work-card" data-category="videos">
+                <div class="card-image">视频封面图</div>
+                <div class="card-body">
+                    <span class="card-tag">视频</span>
+                    <h3>视频标题 1</h3>
+                    <p>这里是视频的简要介绍，可以描述视频的主要内容和亮点。</p>
+                    <div class="card-date">2025年1月12日</div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="videos">
+                <div class="card-image">视频封面图</div>
+                <div class="card-body">
+                    <span class="card-tag">视频</span>
+                    <h3>视频标题 2</h3>
+                    <p>这里是视频的简要介绍，可以描述视频的主要内容和亮点。</p>
+                    <div class="card-date">2025年1月8日</div>
+                </div>
+            </div>
+
+            <!-- 项目卡片 -->
+            <div class="work-card" data-category="projects">
+                <div class="card-image">项目封面图</div>
+                <div class="card-body">
+                    <span class="card-tag">项目</span>
+                    <h3>项目名称 1</h3>
+                    <p>这里是项目的简要介绍，可以描述项目的目标和成果。</p>
+                    <div class="card-date">2025年1月5日</div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="projects">
+                <div class="card-image">项目封面图</div>
+                <div class="card-body">
+                    <span class="card-tag">项目</span>
+                    <h3>项目名称 2</h3>
+                    <p>这里是项目的简要介绍，可以描述项目的目标和成果。</p>
+                    <div class="card-date">2024年12月28日</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -121,5 +164,7 @@ work_items:
             });
         }
     </script>
+    <link rel="stylesheet" href="/css/editor.css">
+    <script src="/js/editor.js"></script>
 </body>
 </html>
