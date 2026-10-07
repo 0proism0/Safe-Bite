@@ -21,9 +21,9 @@
                 }));
                 
                 // 重定向到 admin
-                window.location.href = '/admin/';
+                window.location.href = '{{ site.baseurl }}/admin/';
             } else {
-                document.body.innerHTML = '<p style="text-align:center;margin-top:50px;">登录失败，请重试。<a href="/admin/">返回后台</a></p>';
+                document.body.innerHTML = '<p style="text-align:center;margin-top:50px;">登录失败，请重试。<a href="{{ site.baseurl }}/admin/">返回后台</a></p>';
             }
         })();
     </script>
