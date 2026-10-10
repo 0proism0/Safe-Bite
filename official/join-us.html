@@ -1,31 +1,13 @@
 ---
-page_title: Join Us - SafeBite
-hero_title: Join Us
-hero_desc: 加入我们的行列，一起为食品安全和健康贡献力量
-content_sections:
-  - heading: 为什么加入我们？
-    content: |
-      在 SafeBite，每一位志愿者和成员都是我们推动变革的重要力量。
-      无论你拥有什么技能、背景或经验，只要你有热情和意愿，
-      就能在这里找到属于你的位置，为社区带来积极的影响。
-
-      我们提供多种参与方式，包括：
-
-      • **志愿者服务** - 参与社区活动、食品安全检查、教育宣传等
-      • **专业支持** - 如果你有食品科学、营养、法律等专业背景，欢迎提供专业指导
-      • **内容创作** - 帮助撰写文章、制作视频，传播食品安全知识
-      • **活动组织** - 协助策划和执行各类线上线下活动
-  - heading: 联系我们
-    content: |
-      填写以下表单，我们会尽快与你联系：
+# 内容由 _data/join.yml 提供，请通过 CMS 后台编辑
 ---
-
+{% assign join = site.data.join %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Us - SafeBite</title>
+    <title>{{ join.page_title }}</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -45,31 +27,18 @@ content_sections:
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="join-hero">
-            <h1>Join Us</h1>
-            <p>加入我们的行列，一起为食品安全和健康贡献力量</p>
+            <h1>{{ join.hero_title }}</h1>
+            <p>{{ join.hero_desc }}</p>
         </section>
 
         <!-- 内容区 -->
         <section class="join-content">
-            <h2>为什么加入我们？</h2>
-            <p>
-                在 SafeBite，每一位志愿者和成员都是我们推动变革的重要力量。
-                无论你拥有什么技能、背景或经验，只要你有热情和意愿，
-                就能在这里找到属于你的位置，为社区带来积极的影响。
-            </p>
-            <p>
-                我们提供多种参与方式，包括：
-            </p>
-            <p>
-                • <strong>志愿者服务</strong> - 参与社区活动、食品安全检查、教育宣传等<br>
-                • <strong>专业支持</strong> - 如果你有食品科学、营养、法律等专业背景，欢迎提供专业指导<br>
-                • <strong>内容创作</strong> - 帮助撰写文章、制作视频，传播食品安全知识<br>
-                • <strong>活动组织</strong> - 协助策划和执行各类线上线下活动
-            </p>
+            {% for section in join.content_sections %}
+            <h2{% if forloop.first == false %} style="margin-top: 3rem;"{% endif %}>{{ section.heading }}</h2>
+            {{ section.content | markdownify }}
+            {% endfor %}
 
             <!-- 报名表单 -->
-            <h2 style="margin-top: 3rem;">联系我们</h2>
-            <p>填写以下表单，我们会尽快与你联系：</p>
             <form class="join-form" onsubmit="event.preventDefault(); alert('感谢您的关注！我们会尽快与您联系。');">
                 <div class="form-group">
                     <label for="name">姓名 *</label>
@@ -107,7 +76,5 @@ content_sections:
     <footer class="footer">
         <p>&copy; 2025 SafeBite. All rights reserved.</p>
     </footer>
-    <link rel="stylesheet" href="/css/editor.css">
-    <script src="/js/editor.js"></script>
 </body>
 </html>

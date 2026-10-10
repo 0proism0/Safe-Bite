@@ -1,9 +1,6 @@
 [build]
   publish = "_site"
-  command = "jekyll build"
+  command = "bundle exec jekyll build"
 
 [build.environment]
   RUBY_VERSION = "3.1.0"
-
-[[plugins]]
-  package = "@netlify/plugin-jekyll"

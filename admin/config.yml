@@ -1,13 +1,9 @@
 backend:
-  name: github
-  repo: 0proism0/Safe-Bite
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  app_id: Ov23li20lqmp2QBGhzCB
 
 media_folder: "images/uploads"
-public_folder: "/Safe-Bite/images/uploads"
+public_folder: "/images/uploads"
 
 locale: zh_Hans
 
@@ -18,7 +14,7 @@ collections:
     files:
       - name: "home-page"
         label: "主页内容"
-        file: "index.html"
+        file: "_data/home.yml"
         fields:
           - {label: "网站标题（浏览器标签上显示的）", name: "title", widget: "string"}
           - {label: "网站名称（大标题）", name: "logo", widget: "string"}
@@ -31,7 +27,7 @@ collections:
     files:
       - name: "about-page"
         label: "关于我们 - 内容编辑"
-        file: "official/index.html"
+        file: "_data/about.yml"
         fields:
           - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
           - {label: "大标题", name: "hero_title", widget: "string"}
@@ -68,7 +64,7 @@ collections:
     files:
       - name: "join-page"
         label: "加入我们 - 内容编辑"
-        file: "official/join-us.html"
+        file: "_data/join.yml"
         fields:
           - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
           - {label: "大标题", name: "hero_title", widget: "string"}
@@ -88,7 +84,7 @@ collections:
     files:
       - name: "work-page"
         label: "我们的成果 - 内容编辑"
-        file: "official/our-work.html"
+        file: "_data/work.yml"
         fields:
           - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
           - {label: "大标题", name: "hero_title", widget: "string"}
@@ -106,7 +102,7 @@ collections:
                   - {label: "📄 文章", value: "articles"}
                   - {label: "🎬 视频", value: "videos"}
                   - {label: "📁 项目", value: "projects"}
-              - {label: "封面图片", name: "image", widget: "image"}
+              - {label: "封面图片", name: "image", widget: "image", required: false}
               - {label: "标题", name: "title", widget: "string"}
               - {label: "简短描述", name: "description", widget: "text"}
               - {label: "发布日期", name: "date", widget: "datetime"}
@@ -117,7 +113,7 @@ collections:
     files:
       - name: "donations-page"
         label: "捐赠 - 内容编辑"
-        file: "official/donations.html"
+        file: "_data/donations.yml"
         fields:
           - {label: "页面标题（浏览器标签）", name: "page_title", widget: "string"}
           - {label: "大标题", name: "hero_title", widget: "string"}

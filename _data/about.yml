@@ -1,0 +1,27 @@
+page_title: All About Us - SafeBite
+hero_title: All About Us
+hero_desc: 了解 SafeBite 的故事、我们的使命，以及我们为之努力的目标
+about_sections:
+  - heading: 我们是谁
+    content: |
+      SafeBite 是一个致力于食品安全与健康的组织。我们相信，每个人都应该获得安全、健康、有保障的食品。
+      通过教育、倡导和社区行动，我们努力提升公众对食品安全问题的认识，推动行业的积极变革。
+
+      我们的团队由来自不同背景的热心人士组成，包括食品科学专家、营养师、志愿者和社区领袖。
+      大家怀着共同的信念聚集在一起：让每一口食物都值得信赖。
+  - heading: 我们的使命
+    content: |
+      通过普及食品安全知识、推动政策改进、支持本地食品生产者，
+      我们致力于构建一个更加透明、健康和可持续的食品体系。
+      我们相信，改变始于教育，成于行动。
+team_photos: []
+achievements:
+  - icon: 🏆
+    title: 成果标题 1
+    description: 这里可以填写具体的成果描述，比如举办了多少场食品安全讲座、影响了多少社区居民等。
+  - icon: 📊
+    title: 成果标题 2
+    description: 这里可以填写另一个成果的描述，比如发布的研究报告、获得的奖项或认可等。
+  - icon: 🤝
+    title: 成果标题 3
+    description: 这里可以填写合作伙伴关系、社区项目成果等更多内容。

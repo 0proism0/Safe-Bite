@@ -1,19 +1,13 @@
 ---
-page_title: Donations - SafeBite
-hero_title: Donations
-hero_desc: 您的支持是我们前进的动力
-message: |
-  感谢您的关注！我们正在筹备捐赠相关事宜，
-  敬请期待。如果您希望提前了解或支持我们，
-  请通过 Join Us 页面联系我们。
+# 内容由 _data/donations.yml 提供，请通过 CMS 后台编辑
 ---
-
+{% assign donations = site.data.donations %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donations - SafeBite</title>
+    <title>{{ donations.page_title }}</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -33,17 +27,16 @@ message: |
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="donations-hero">
-            <h1>Donations</h1>
-            <p>您的支持是我们前进的动力</p>
+            <h1>{{ donations.hero_title }}</h1>
+            <p>{{ donations.hero_desc }}</p>
         </section>
 
         <!-- 内容区 -->
         <section class="donations-content">
             <div class="coming-soon">🚧</div>
             <h2>页面建设中</h2>
+            {{ donations.message | markdownify }}
             <p>
-                感谢您的关注！我们正在筹备捐赠相关事宜，<br>
-                敬请期待。如果您希望提前了解或支持我们，<br>
                 请通过 <a href="/official/join-us.html" style="color: var(--primary-color); text-decoration: underline;">Join Us</a> 页面联系我们。
             </p>
         </section>
@@ -53,7 +46,5 @@ message: |
     <footer class="footer">
         <p>&copy; 2025 SafeBite. All rights reserved.</p>
     </footer>
-    <link rel="stylesheet" href="/css/editor.css">
-    <script src="/js/editor.js"></script>
 </body>
 </html>
