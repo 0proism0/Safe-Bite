@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入确认码 - SafeBite</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f6f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,.08);
+            max-width: 420px;
+            width: 100%;
+            padding: 32px 28px;
+        }
+        h1 { font-size: 20px; margin-bottom: 8px; }
+        .desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+        label { display: block; font-size: 13px; color: #333; margin: 14px 0 6px; }
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: ui-monospace, Menlo, monospace;
+        }
+        input:focus { outline: none; border-color: #1a73e8; }
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 12px;
+            border: 0;
+            border-radius: 8px;
+            background: #1a73e8;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:disabled { background: #9fc3f5; cursor: default; }
+        .msg { margin-top: 14px; font-size: 13px; line-height: 1.5; display: none; }
+        .msg.error { color: #d93025; display: block; }
+        .msg.ok { color: #188038; display: block; }
+        .back { display: block; text-align: center; margin-top: 18px; font-size: 13px; color: #1a73e8; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔑 输入确认码</h1>
+        <p class="desc">
+            打开邮箱（包括垃圾邮件文件夹），复制邮件里的确认码，粘贴到下面。
+            如果你收到的是<b>邀请邮件</b>，还需要设置一个登录密码。
+        </p>
+        <form id="confirm-form">
+            <label for="code">确认码</label>
+            <input type="text" id="code" autocomplete="off" required>
+            <label for="password">设置密码（邀请邮件必填，其他邮件留空）</label>
+            <input type="password" id="password" autocomplete="new-password">
+            <button type="submit" id="submit-btn">验证并进入后台</button>
+        </form>
+        <p class="msg" id="msg"></p>
+        <a class="back" href="/admin/">返回登录页</a>
+    </div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var IDENTITY_URL = '/.netlify/identity';
+        var form = document.getElementById('confirm-form');
+        var codeInput = document.getElementById('code');
+        var pwdInput = document.getElementById('password');
+        var btn = document.getElementById('submit-btn');
+        var msg = document.getElementById('msg');
+
+        function show(text, isError) {
+            msg.textContent = text;
+            msg.className = 'msg ' + (isError ? 'error' : 'ok');
+        }
+
+        // 如果通过邮件链接打开（链接里自带 token），自动填入
+        var hash = window.location.hash || '';
+        var m = hash.match(/#(?:confirmation|invite|recovery)_token=(.+)/);
+        if (m) {
+            codeInput.value = decodeURIComponent(m[1]);
+            if (hash.indexOf('#invite_token=') === 0) {
+                pwdInput.focus();
+            }
+        }
+
+        function verify(body) {
+            return fetch(IDENTITY_URL + '/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            }).then(function (res) {
+                return res.json().catch(function () {
+                    throw new Error('服务暂时不可用，请确认网站已开启 Netlify Identity 后重试');
+                }).then(function (data) {
+                    if (!res.ok) throw new Error(data.msg || data.error || '验证失败');
+                    return data; // { access_token, refresh_token, expires_in, ... }
+                });
+            });
+        }
+
+        function fetchUser(accessToken) {
+            return fetch(IDENTITY_URL + '/user', {
+                headers: { 'Authorization': 'Bearer ' + accessToken }
+            }).then(function (res) {
+                return res.json().catch(function () {
+                    throw new Error('服务暂时不可用，请稍后重试');
+                }).then(function (data) {
+                    if (!res.ok) throw new Error(data.msg || data.error || '获取用户信息失败');
+                    return data;
+                });
+            });
+        }
+
+        function saveSession(tokenResponse, userData) {
+            // 计算过期时间（和 Netlify 官方组件格式一致）
+            try {
+                var payload = JSON.parse(atob(tokenResponse.access_token.split('.')[1]
+                    .replace(/-/g, '+').replace(/_/g, '/')));
+                tokenResponse.expires_at = payload.exp * 1000;
+            } catch (e) { /* 忽略 */ }
+
+            var details = Object.assign({}, userData, { token: tokenResponse });
+            localStorage.setItem('gotrue.user', JSON.stringify(details));
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var token = codeInput.value.trim();
+            var password = pwdInput.value;
+            if (!token) return;
+
+            btn.disabled = true;
+            btn.textContent = '正在验证…';
+            msg.className = 'msg';
+
+            // 依次尝试各种验证类型，直到成功
+            var attempts = [];
+            if (password) attempts.push({ token: token, password: password, type: 'signup' });    // 邀请
+            attempts.push({ token: token, type: 'signup' });                                       // 邮箱确认
+            if (password) attempts.push({ token: token, password: password, type: 'recovery' });   // 重置密码
+            attempts.push({ token: token, type: 'recovery' });                                     // 重置密码(仅验证)
+
+            var i = 0;
+            function tryNext(lastError) {
+                if (i >= attempts.length) {
+                    btn.disabled = false;
+                    btn.textContent = '验证并进入后台';
+                    show('验证失败：' + (lastError ? lastError.message : '确认码无效或已过期，请重新获取邮件。'), true);
+                    return;
+                }
+                var body = attempts[i++];
+                verify(body)
+                    .then(function (tokenResponse) {
+                        return fetchUser(tokenResponse.access_token).then(function (userData) {
+                            saveSession(tokenResponse, userData);
+                            btn.textContent = '验证成功，正在进入后台…';
+                            show('✅ 验证成功！正在进入内容管理后台…', false);
+                            window.location.href = '/admin/';
+                        });
+                    })
+                    .catch(function (err) { tryNext(err); });
+            }
+            tryNext();
+        });
+    })();
+    </script>
+</body>
+</html>
