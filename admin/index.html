@@ -4,13 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>内容管理 - SafeBite</title>
+    <style>
+        /* 加载中的提示，避免白屏 */
+        #cms-loader {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-family: -apple-system, "PingFang SC", sans-serif;
+            color: #555;
+            background: #fff;
+        }
+        #cms-loader .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid #e0e0e0;
+            border-top-color: #1a73e8;
+            border-radius: 50%;
+            animation: cms-spin 0.8s linear infinite;
+        }
+        @keyframes cms-spin {
+            to { transform: rotate(360deg); }
+        }
+        #cms-loader p { margin: 0; font-size: 14px; }
+        #cms-loader a { color: #1a73e8; font-size: 13px; }
+    </style>
     <!-- Netlify Identity（登录用） -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script defer src="netlify-identity-widget.js"></script>
+    <!-- Decap CMS（本地托管，避免 CDN 加载失败导致白屏） -->
+    <script defer src="decap-cms.js"></script>
+    <script>
+        // 8 秒后仍未加载完成，显示提示而不是白屏
+        setTimeout(function () {
+            var loader = document.getElementById('cms-loader');
+            if (loader && !window.DecapCms && !document.querySelector('#nc-root [class]')) {
+                loader.innerHTML =
+                    '<p>后台加载出现问题，请刷新重试。</p>' +
+                    '<a href="javascript:location.reload()">点击刷新</a>';
+            }
+        }, 8000);
+    </script>
 </head>
 <body>
-    <!-- Decap CMS 会自动接管这个页面 -->
+    <!-- 加载提示：Decap CMS 接管页面后会被覆盖 -->
+    <div id="cms-loader">
+        <div class="spinner"></div>
+        <p>正在加载内容管理后台…</p>
+    </div>
     <noscript>请启用 JavaScript 以使用内容管理系统。</noscript>
 </body>
 </html>
