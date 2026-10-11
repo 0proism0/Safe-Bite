@@ -37,10 +37,22 @@
     <!-- Decap CMS（本地托管，避免 CDN 加载失败导致白屏） -->
     <script defer src="decap-cms.js"></script>
     <script>
+        // CMS 渲染出界面后，移除加载提示
+        var loaderObserver = new MutationObserver(function () {
+            var loader = document.getElementById('cms-loader');
+            if (!loader) return;
+            var ncRoot = document.getElementById('nc-root');
+            if (ncRoot && ncRoot.textContent.trim()) {
+                loader.remove();
+                loaderObserver.disconnect();
+            }
+        });
+        loaderObserver.observe(document.body, { childList: true, subtree: true });
+
         // 8 秒后仍未加载完成，显示提示而不是白屏
         setTimeout(function () {
             var loader = document.getElementById('cms-loader');
-            if (loader && !window.DecapCms && !document.querySelector('#nc-root [class]')) {
+            if (loader) {
                 loader.innerHTML =
                     '<p>后台加载出现问题，请刷新重试。</p>' +
                     '<a href="javascript:location.reload()">点击刷新</a>';
