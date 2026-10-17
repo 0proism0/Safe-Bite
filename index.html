@@ -1,27 +1,24 @@
----
-# 内容由 _data/home.yml 提供，请通过 CMS 后台编辑
----
-{% assign home = site.data.home %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ home.title }}</title>
+    <title>SafeBite</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="home-page">
+<body class="home-page" data-content="home">
     <div class="home-container">
         <div class="home-content">
-            <h1 class="logo">{{ home.logo }}</h1>
-            <p class="tagline">{{ home.tagline }}</p>
+            <h1 class="logo">SafeBite</h1>
+            <p class="tagline"></p>
             <a href="/official/index.html" class="btn-enter">
-                {{ home.button_text }}
+                <span class="btn-text">进入官网</span>
                 <span class="arrow">→</span>
             </a>
         </div>
     </div>
     <link rel="stylesheet" href="/css/edit.css">
     <script src="/js/edit.js"></script>
+    <script src="/js/content.js"></script>
 </body>
 </html>

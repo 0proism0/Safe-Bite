@@ -1,16 +1,12 @@
----
-# 内容由 _data/about.yml 提供，请通过 CMS 后台编辑
----
-{% assign about = site.data.about %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ about.page_title }}</title>
+    <title>All About Us - SafeBite</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body data-content="about">
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
@@ -27,53 +23,18 @@
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="about-hero">
-            <h1>{{ about.hero_title }}</h1>
-            <p>{{ about.hero_desc }}</p>
+            <h1></h1>
+            <p></p>
         </section>
 
-        <!-- 简介内容 -->
-        <section class="about-content">
-            {% for section in about.about_sections %}
-            <h2{% if forloop.first == false %} style="margin-top: 3rem;"{% endif %}>{{ section.heading }}</h2>
-            {{ section.content | markdownify }}
-            {% endfor %}
-
-            <!-- 照片展示区 -->
-            <h2 style="margin-top: 3rem;">我们的团队</h2>
-            {% if about.team_photos.size > 0 %}
-            <div class="photo-grid">
-                {% for photo in about.team_photos %}
-                <div class="photo-item">
-                    <img src="{{ photo.photo }}" alt="{{ photo.caption | default: '团队照片' }}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <p>以下是我们团队的一些照片（您可以后续替换为真实照片）：</p>
-            <div class="photo-grid">
-                <div class="photo-item">团队合影 1</div>
-                <div class="photo-item">团队合影 2</div>
-                <div class="photo-item">团队合影 3</div>
-                <div class="photo-item">团队合影 4</div>
-                <div class="photo-item">团队合影 5</div>
-                <div class="photo-item">团队合影 6</div>
-            </div>
-            {% endif %}
-        </section>
+        <!-- 简介内容与团队照片 -->
+        <section class="about-content"></section>
 
         <!-- 优秀成果展示 -->
         <section class="section" style="background: var(--bg-light);">
-            <h2 class="section-title">我们的成果</h2>
+            <h2 class="section-title"></h2>
             <p class="section-subtitle">以下是我们取得的一些重要成就（将持续更新）</p>
-            <div class="achievements-grid">
-                {% for item in about.achievements %}
-                <div class="achievement-card">
-                    <div class="icon">{{ item.icon }}</div>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
-                </div>
-                {% endfor %}
-            </div>
+            <div class="achievements-grid"></div>
         </section>
     </div>
 
@@ -83,5 +44,6 @@
     </footer>
     <link rel="stylesheet" href="/css/edit.css">
     <script src="/js/edit.js"></script>
+    <script src="/js/content.js"></script>
 </body>
 </html>

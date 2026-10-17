@@ -1,16 +1,12 @@
----
-# 内容由 _data/join.yml 提供，请通过 CMS 后台编辑
----
-{% assign join = site.data.join %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ join.page_title }}</title>
+    <title>Join Us - SafeBite</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body data-content="join">
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
@@ -27,17 +23,12 @@
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="join-hero">
-            <h1>{{ join.hero_title }}</h1>
-            <p>{{ join.hero_desc }}</p>
+            <h1></h1>
+            <p></p>
         </section>
 
         <!-- 内容区 -->
         <section class="join-content">
-            {% for section in join.content_sections %}
-            <h2{% if forloop.first == false %} style="margin-top: 3rem;"{% endif %}>{{ section.heading }}</h2>
-            {{ section.content | markdownify }}
-            {% endfor %}
-
             <!-- 报名表单 -->
             <form class="join-form" onsubmit="event.preventDefault(); alert('感谢您的关注！我们会尽快与您联系。');">
                 <div class="form-group">
@@ -78,5 +69,6 @@
     </footer>
     <link rel="stylesheet" href="/css/edit.css">
     <script src="/js/edit.js"></script>
+    <script src="/js/content.js"></script>
 </body>
 </html>

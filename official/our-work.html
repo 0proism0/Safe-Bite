@@ -1,16 +1,12 @@
----
-# 内容由 _data/work.yml 提供，请通过 CMS 后台编辑
----
-{% assign work = site.data.work %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ work.page_title }}</title>
+    <title>Our Work - SafeBite</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body data-content="work">
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
@@ -27,47 +23,20 @@
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="work-hero">
-            <h1>{{ work.hero_title }}</h1>
-            <p>{{ work.hero_desc }}</p>
+            <h1></h1>
+            <p></p>
         </section>
 
         <!-- 分类标签 -->
         <div class="work-tabs">
-            <button class="work-tab active" onclick="filterWork('all')">全部</button>
-            <button class="work-tab" onclick="filterWork('articles')">文章</button>
-            <button class="work-tab" onclick="filterWork('videos')">视频</button>
-            <button class="work-tab" onclick="filterWork('projects')">项目</button>
+            <button class="work-tab active" onclick="filterWork('all', this)">全部</button>
+            <button class="work-tab" onclick="filterWork('articles', this)">文章</button>
+            <button class="work-tab" onclick="filterWork('videos', this)">视频</button>
+            <button class="work-tab" onclick="filterWork('projects', this)">项目</button>
         </div>
 
         <!-- 内容卡片 -->
-        <div class="work-grid" id="workGrid">
-            {% for item in work.work_items %}
-            {% case item.category %}
-              {% when 'articles' %}
-                {% assign tag_label = '文章' %}
-                {% assign cover_placeholder = '文章封面图' %}
-              {% when 'videos' %}
-                {% assign tag_label = '视频' %}
-                {% assign cover_placeholder = '视频封面图' %}
-              {% else %}
-                {% assign tag_label = '项目' %}
-                {% assign cover_placeholder = '项目封面图' %}
-            {% endcase %}
-            <div class="work-card" data-category="{{ item.category }}">
-                {% if item.image and item.image != "" %}
-                <div class="card-image"><img src="{{ item.image }}" alt="{{ item.title }}" style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;"></div>
-                {% else %}
-                <div class="card-image">{{ cover_placeholder }}</div>
-                {% endif %}
-                <div class="card-body">
-                    <span class="card-tag">{{ tag_label }}</span>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
-                    <div class="card-date">{{ item.date | date: "%Y年%-m月%-d日" }}</div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+        <div class="work-grid" id="workGrid"></div>
     </div>
 
     <!-- Footer -->
@@ -75,27 +44,20 @@
         <p>&copy; 2025 SafeBite. All rights reserved.</p>
     </footer>
 
-    <!-- 简单的筛选脚本 -->
+    <!-- 筛选脚本 -->
     <script>
-        function filterWork(category) {
-            const tabs = document.querySelectorAll('.work-tab');
-            const cards = document.querySelectorAll('.work-card');
-
-            // 更新标签状态
-            tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // 筛选卡片
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+        function filterWork(category, btn) {
+            var tabs = document.querySelectorAll('.work-tab');
+            var cards = document.querySelectorAll('.work-card');
+            tabs.forEach(function (tab) { tab.classList.remove('active'); });
+            if (btn) btn.classList.add('active');
+            cards.forEach(function (card) {
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
             });
         }
     </script>
     <link rel="stylesheet" href="/css/edit.css">
     <script src="/js/edit.js"></script>
+    <script src="/js/content.js"></script>
 </body>
 </html>

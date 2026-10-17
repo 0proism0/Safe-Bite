@@ -1,16 +1,12 @@
----
-# 内容由 _data/donations.yml 提供，请通过 CMS 后台编辑
----
-{% assign donations = site.data.donations %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ donations.page_title }}</title>
+    <title>Donations - SafeBite</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body data-content="donations">
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
@@ -27,15 +23,15 @@
     <div class="page-wrapper">
         <!-- Hero 区域 -->
         <section class="donations-hero">
-            <h1>{{ donations.hero_title }}</h1>
-            <p>{{ donations.hero_desc }}</p>
+            <h1></h1>
+            <p></p>
         </section>
 
         <!-- 内容区 -->
         <section class="donations-content">
             <div class="coming-soon">🚧</div>
             <h2>页面建设中</h2>
-            {{ donations.message | markdownify }}
+            <div class="donations-message"></div>
             <p>
                 请通过 <a href="/official/join-us.html" style="color: var(--primary-color); text-decoration: underline;">Join Us</a> 页面联系我们。
             </p>
@@ -48,5 +44,6 @@
     </footer>
     <link rel="stylesheet" href="/css/edit.css">
     <script src="/js/edit.js"></script>
+    <script src="/js/content.js"></script>
 </body>
 </html>
