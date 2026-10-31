@@ -1,6 +1,6 @@
 {
-  "page_title": "All About Us - SafeBite",
-  "hero_title": "All About Us",
+  "page_title": "关于我们 - SafeBite",
+  "hero_title": "关于我们",
   "hero_desc": "了解 SafeBite 的故事、我们的使命，以及我们为之努力的目标",
   "about_sections": [
     {
@@ -13,21 +13,5 @@
     }
   ],
   "team_photos": [],
-  "achievements": [
-    {
-      "icon": "🏆",
-      "title": "成果标题 1",
-      "description": "这里可以填写具体的成果描述，比如举办了多少场食品安全讲座、影响了多少社区居民等。"
-    },
-    {
-      "icon": "📊",
-      "title": "成果标题 2",
-      "description": "这里可以填写另一个成果的描述，比如发布的研究报告、获得的奖项或认可等。"
-    },
-    {
-      "icon": "🤝",
-      "title": "成果标题 3",
-      "description": "这里可以填写合作伙伴关系、社区项目成果等更多内容。"
-    }
-  ]
+  "achievements": []
 }

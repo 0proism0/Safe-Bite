@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Work - SafeBite</title>
+    <title>我们的成果 - SafeBite</title>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body data-content="work">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-inner">
             <a href="/official/index.html" class="navbar-brand">SafeBite</a>
             <ul class="navbar-nav">
-                <li><a href="/official/index.html">All About Us</a></li>
-                <li><a href="/official/join-us.html">Join Us</a></li>
-                <li><a href="/official/our-work.html" class="active">Our Work</a></li>
-                <li><a href="/official/donations.html">Donations</a></li>
+                <li><a href="/official/index.html">关于我们</a></li>
+                <li><a href="/official/join-us.html">加入我们</a></li>
+                <li><a href="/official/our-work.html" class="active">我们的成果</a></li>
+                <li><a href="/official/donations.html">捐赠</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="page-wrapper">
+    <div class="page-wrapper" id="main">
         <!-- Hero 区域 -->
         <section class="work-hero">
             <h1></h1>
@@ -29,10 +33,10 @@
 
         <!-- 分类标签 -->
         <div class="work-tabs">
-            <button class="work-tab active" onclick="filterWork('all', this)">全部</button>
-            <button class="work-tab" onclick="filterWork('articles', this)">文章</button>
-            <button class="work-tab" onclick="filterWork('videos', this)">视频</button>
-            <button class="work-tab" onclick="filterWork('projects', this)">项目</button>
+            <button class="work-tab active" data-cat="" onclick="filterWork('all', this)">全部</button>
+            <button class="work-tab" data-cat="articles" onclick="filterWork('articles', this)">文章</button>
+            <button class="work-tab" data-cat="videos" onclick="filterWork('videos', this)">视频</button>
+            <button class="work-tab" data-cat="projects" onclick="filterWork('projects', this)">项目</button>
         </div>
 
         <!-- 内容卡片 -->
@@ -41,20 +45,66 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 SafeBite. All rights reserved.</p>
+        <div class="footer-inner">
+            <div class="footer-brand">🌿 SafeBite</div>
+            <p class="footer-tagline">让每一口都安心</p>
+            <nav class="footer-nav">
+                <a href="/official/index.html">关于我们</a>
+                <a href="/official/join-us.html">加入我们</a>
+                <a href="/official/our-work.html">我们的成果</a>
+                <a href="/official/donations.html">捐赠</a>
+            </nav>
+            <p class="footer-copy">&copy; 2026 SafeBite. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- 筛选脚本 -->
+    <!-- 筛选脚本：分类与 URL hash 同步（可分享、可前进后退） -->
     <script>
-        function filterWork(category, btn) {
-            var tabs = document.querySelectorAll('.work-tab');
-            var cards = document.querySelectorAll('.work-card');
-            tabs.forEach(function (tab) { tab.classList.remove('active'); });
-            if (btn) btn.classList.add('active');
-            cards.forEach(function (card) {
-                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+        (function () {
+            var CAT_IDS = { articles: 'articles', videos: 'videos', projects: 'projects' };
+
+            function activate(category, updateHash) {
+                var tabs = document.querySelectorAll('.work-tab');
+                var cards = document.querySelectorAll('.work-card');
+                var matched = false;
+                tabs.forEach(function (tab) {
+                    var isAll = !tab.getAttribute('data-cat');
+                    var tabCat = tab.getAttribute('data-cat');
+                    var on = category === 'all'
+                        ? isAll
+                        : (tabCat === category);
+                    tab.classList.toggle('active', on);
+                    if (on) matched = true;
+                });
+                if (!matched) {
+                    category = 'all';
+                    tabs.forEach(function (tab) {
+                        tab.classList.toggle('active', !tab.getAttribute('data-cat'));
+                    });
+                }
+                cards.forEach(function (card) {
+                    card.style.display = (category === 'all' || card.dataset.category === category) ? 'flex' : 'none';
+                });
+                if (updateHash) {
+                    var hash = category === 'all' ? '' : '#' + category;
+                    if (location.hash !== hash) history.replaceState(null, '', location.pathname + hash);
+                }
+            }
+
+            window.filterWork = function (category, btn) {
+                activate(category, true);
+            };
+
+            // 初始：从 URL hash 恢复分类
+            var initial = location.hash.replace('#', '');
+            if (!CAT_IDS[initial]) initial = 'all';
+            if (initial !== 'all') activate(initial, false);
+
+            window.addEventListener('hashchange', function () {
+                var cat = location.hash.replace('#', '');
+                activate(CAT_IDS[cat] ? cat : 'all', false);
             });
-        }
+        })();
     </script>
     <link rel="stylesheet" href="/css/edit.css">
     <script src="/js/edit.js"></script>

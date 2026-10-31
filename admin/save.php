@@ -35,17 +35,40 @@ if ($action === 'upload') {
     if (strpos($data, 'data:image') !== 0) fail('图片数据无效');
     if (strlen($data) > 8 * 1024 * 1024) fail('图片不能超过 8MB');
 
-    $bin = base64_decode(preg_replace('/^data:image\/[a-z]+;base64,/', '', $data));
+    $bin = base64_decode(preg_replace('/^data:image\/[a-z0-9.+-]+;base64,/i', '', $data));
     if (!$bin) fail('图片解码失败');
 
     if (!is_dir(__DIR__ . '/../images/uploads')) {
         mkdir(__DIR__ . '/../images/uploads', 0755, true);
     }
-    $filename = date('Ymd-His') . '-' . $name;
+    $suffix = function_exists('random_bytes') ? bin2hex(random_bytes(4)) : substr(md5(uniqid()), 0, 8);
+    $filename = date('Ymd-His') . '-' . $suffix . '-' . $name;
     $path = __DIR__ . '/../images/uploads/' . $filename;
     if (file_put_contents($path, $bin) === false) fail('图片保存失败，请检查目录权限');
 
     echo json_encode(['ok' => true, 'path' => '/images/uploads/' . $filename], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+// ---------- 文件上传（文章 PDF / Word 等） ----------
+if ($action === 'upload-file') {
+    $data = $input['data'] ?? '';
+    $name = preg_replace('/[^a-zA-Z0-9._-]/', '_', $input['name'] ?? 'file.pdf');
+    if (!preg_match('/\.(pdf|docx?|txt|md|pptx?|xlsx?)$/i', $name)) fail('只支持 pdf / doc / docx / txt / md / ppt / xls / xlsx 文件');
+    if (strpos($data, 'data:') !== 0) fail('文件数据无效');
+    if (strlen($data) > 40 * 1024 * 1024) fail('文件不能超过 30MB');
+
+    $bin = base64_decode(preg_replace('/^data:[^;]+;base64,/', '', $data));
+    if (!$bin) fail('文件解码失败');
+
+    $dir = __DIR__ . '/../files';
+    if (!is_dir($dir)) mkdir($dir, 0755, true);
+    $suffix = function_exists('random_bytes') ? bin2hex(random_bytes(4)) : substr(md5(uniqid()), 0, 8);
+    $filename = date('Ymd-His') . '-' . $suffix . '-' . $name;
+    $path = $dir . '/' . $filename;
+    if (file_put_contents($path, $bin) === false) fail('文件保存失败，请检查 files 目录权限');
+
+    echo json_encode(['ok' => true, 'path' => '/files/' . $filename], JSON_UNESCAPED_UNICODE);
     exit;
 }
 

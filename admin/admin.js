@@ -72,7 +72,8 @@
                         { key: 'image', label: '封面图片', type: 'image' },
                         { key: 'title', label: '标题', type: 'text' },
                         { key: 'description', label: '简短描述', type: 'textarea' },
-                        { key: 'date', label: '发布日期', type: 'date' }
+                        { key: 'date', label: '发布日期', type: 'date' },
+                        { key: 'file', label: '📎 文章文件（PDF / Word / TXT，可选——上传后访客可在页面上下载）', type: 'file' }
                     ]
                 }
             ]
@@ -167,6 +168,11 @@
             html += '<button type="button" class="btn btn-small" data-upload="' + name + '">📤 上传图片</button></div>';
             if (v) html += '<img class="img-preview" src="' + escapeAttr(v) + '">';
             html += '<div class="hint">建议先用手机/电脑压缩图片，越小加载越快</div>';
+        } else if (field.type === 'file') {
+            html += '<div class="img-row"><div class="field"><input type="text" data-name="' + name + '" value="' + escapeAttr(v) + '" placeholder="文件地址，或点击右侧上传"></div>';
+            html += '<button type="button" class="btn btn-small" data-upload-file="' + name + '">📤 上传文件</button></div>';
+            if (v) html += '<div class="file-preview">📄 已上传：<a href="' + escapeAttr(v) + '" target="_blank">' + escapeHtml(String(v).split('/').pop()) + '</a></div>';
+            html += '<div class="hint">支持 pdf / doc / docx / txt / md，最大 30MB</div>';
         } else if (field.type === 'date') {
             html += '<input type="date" data-name="' + name + '" value="' + escapeAttr(String(v).slice(0, 10)) + '">';
         } else {
@@ -244,40 +250,64 @@
 
     // ---------- 图片上传 ----------
     function bindUploadButtons(panel) {
+        // 图片上传按钮
         panel.querySelectorAll('[data-upload]').forEach(function (btn) {
             btn.onclick = function () {
-                var name = btn.getAttribute('data-upload');
-                var input = document.createElement('input');
-                input.type = 'file';
-                input.accept = 'image/*';
-                input.onchange = function () {
-                    var file = input.files[0];
-                    if (!file) return;
-                    if (file.size > 8 * 1024 * 1024) { alert('图片不能超过 8MB'); return; }
-                    var reader = new FileReader();
-                    reader.onload = function () {
-                        setStatus('正在上传图片…', '');
-                        post('upload', { name: file.name, data: reader.result })
-                            .then(function (res) {
-                                var fieldInput = panel.querySelector('[data-name="' + name + '"]');
-                                fieldInput.value = res.path;
-                                var old = fieldInput.closest('.img-row').parentElement.querySelector('.img-preview');
-                                if (old) old.remove();
-                                var img = document.createElement('img');
-                                img.className = 'img-preview';
-                                img.src = res.path;
-                                fieldInput.closest('.img-row').after(img);
-                                setStatus('✅ 图片已上传', 'ok');
-                            })
-                            .catch(function (err) {
-                                setStatus('❌ 上传失败：' + err.message, 'error');
-                            });
-                    };
-                    reader.readAsDataURL(file);
-                };
-                input.click();
+                pickFile(btn.getAttribute('data-upload'), 'image/*', 8 * 1024 * 1024, 'upload', '图片', function (res, fieldInput) {
+                    var old = fieldInput.closest('.img-row').parentElement.querySelector('.img-preview');
+                    if (old) old.remove();
+                    var img = document.createElement('img');
+                    img.className = 'img-preview';
+                    img.src = res.path;
+                    fieldInput.closest('.img-row').after(img);
+                });
             };
         });
+        // 文章文件上传按钮
+        panel.querySelectorAll('[data-upload-file]').forEach(function (btn) {
+            btn.onclick = function () {
+                pickFile(btn.getAttribute('data-upload-file'), '.pdf,.doc,.docx,.txt,.md', 30 * 1024 * 1024, 'upload-file', '文件', function (res, fieldInput) {
+                    var old = fieldInput.closest('.img-row').parentElement.querySelector('.file-preview');
+                    if (old) old.remove();
+                    var div = document.createElement('div');
+                    div.className = 'file-preview';
+                    var a = document.createElement('a');
+                    a.href = res.path;
+                    a.target = '_blank';
+                    a.textContent = '📄 已上传：' + res.path.split('/').pop();
+                    div.appendChild(a);
+                    fieldInput.closest('.img-row').after(div);
+                });
+            };
+        });
+    }
+
+    // 通用的本地文件选择 + 上传
+    function pickFile(name, accept, maxSize, action, noun, onDone) {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = accept;
+        input.onchange = function () {
+            var file = input.files[0];
+            if (!file) return;
+            if (file.size > maxSize) { alert(noun + '不能超过 ' + Math.round(maxSize / 1024 / 1024) + 'MB'); return; }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    setStatus('正在上传' + noun + '…', '');
+                    post(action, { name: file.name, data: reader.result })
+                        .then(function (res) {
+                            var fieldInput = document.querySelector('[data-name="' + name + '"]');
+                            fieldInput.value = res.path;
+                            onDone(res, fieldInput);
+                            setStatus('✅ ' + noun + '已上传', 'ok');
+                        })
+                        .catch(function (err) {
+                            setStatus('❌ 上传失败：' + err.message, 'error');
+                        });
+                };
+                reader.readAsDataURL(file);
+        };
+        input.click();
     }
 
     // ---------- 打开页面 ----------
