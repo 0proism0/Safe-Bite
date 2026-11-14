@@ -379,9 +379,15 @@
             body: JSON.stringify(body)
         }).then(function (res) {
             return res.json().catch(function () {
-                throw new Error('服务器未返回有效结果（可能没有启用 PHP）');
+                var err = new Error('服务器未返回有效结果（可能没有启用 PHP）');
+                err.noApi = true; // 服务器没有可用的保存接口
+                throw err;
             }).then(function (data) {
-                if (!res.ok || !data.ok) throw new Error(data.msg || '保存失败');
+                if (!res.ok || !data.ok) {
+                    var err2 = new Error(data.msg || '保存失败');
+                    err2.apiError = true; // 接口正常响应，但操作失败
+                    throw err2;
+                }
                 return data;
             });
         });
@@ -397,8 +403,8 @@
                 setStatus('✅ 已保存！刷新网站即可看到更改', 'ok');
             })
             .catch(function (err) {
-                // 服务器没有 PHP：提供手动复制方案
-                showManual(currentPage, data, err.message);
+                // 仅当服务器没有保存接口时，才提供手动复制方案
+                if (err.noApi) showManual(currentPage, data, err.message);
                 setStatus('❌ ' + err.message, 'error');
             })
             .finally(function () {
@@ -408,9 +414,11 @@
 
     // ---------- 手动保存 ----------
     var overlay = document.getElementById('manual-overlay');
+    var manualTitle = document.getElementById('manual-title');
 
     function showManual(file, data, reason) {
         document.getElementById('manual-file').textContent = file;
+        manualTitle.textContent = '⚠️ 自动保存不可用：' + reason;
         document.getElementById('manual-json').value =
             '// 保存为 _data/' + file + '.json（原因：' + reason + '）\n' +
             JSON.stringify(data, null, 2);
